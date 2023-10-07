@@ -1,19 +1,26 @@
-import express, { json } from 'express';
-import 'dotenv/config';
 import cors from 'cors';
+import 'dotenv/config';
+import express, { json } from 'express';
 import morgan from 'morgan';
-
+import { createClient, RedisClientType } from 'redis';
+import { connectMongo, connectRedis } from './DB/db';
 
 const server = express();
 const port = process.env.PORT ?? 5000;
+const redisClient: RedisClientType = createClient();
 
-server.use(cors({
-    origin: process.env.CORS_ORIGIN ?? "http://localhost:3000",
-    credentials: true,
-}));
+server.use(
+	cors({
+		origin: process.env.CORS_ORIGIN ?? 'http://localhost:3000',
+		credentials: true,
+	}),
+);
 server.use(json());
-server.use(morgan("dev"));
+server.use(morgan('dev'));
 
-server.listen(port, ()=>{
-    console.log(`[server] : Server running at http://localhost:${port}`);
-})
+connectMongo();
+connectRedis(redisClient);
+
+server.listen(port, () => {
+	console.log(`[server] : Server running at http://localhost:${port}`);
+});
