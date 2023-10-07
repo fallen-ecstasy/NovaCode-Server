@@ -1,0 +1,19 @@
+{
+	"parser": "@typescript-eslint/parser",
+	"plugins": ["@typescript-eslint", "prettier"],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"prettier"
+	],
+	"rules": {
+		// Additional rules can be added here
+		"semi": "error",
+		"camelcase": "error",
+		"eqeqeq": "warn",
+    "no-inline-comments":"error",
+    "prefer-destructuring":"warn"
+    
+	},
+	"ignorePatterns": ["node_modules/"]
+}
