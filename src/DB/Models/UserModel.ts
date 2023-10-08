@@ -12,7 +12,7 @@ interface User {
     attempted: [ObjectId],
 }
 
-// 2. Create a Schema corresponding to the document interface.
+// Create a Schema corresponding to the document interface.
 const userSchema = new Schema<User>({
     _id: {type: Object, required: true},
     name: {type: String, required: true},
@@ -24,7 +24,7 @@ const userSchema = new Schema<User>({
     attempted: {type: [Object]},
 });
 
-// 3. Create a Model.
+// Create a Model.
 const User = model<User>('User', userSchema);
 
 export default User;
