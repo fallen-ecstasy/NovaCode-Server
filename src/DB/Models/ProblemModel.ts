@@ -1,6 +1,8 @@
 import mongoose, { Schema, Document } from 'mongoose';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import autoIncrement from 'mongoose-auto-increment';
+//import autoIncrement from 'mongoose-auto-increment';
+import {autoIncrement} from 'mongoose-plugin-autoinc';
+
 
 interface IProblem extends Document{
   title: string;
@@ -48,12 +50,17 @@ const problemSchema = new Schema<IProblem>({
 
 // creating auto-incrementing field for _id.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-problemSchema.plugin((schema: any)=> {
-  schema.add({ _id: Number });
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  schema.plugin(require('mongoose-auto-increment').plugin, { model: 'Problem', field: '_id', startAt: 1 });
-});
+// problemSchema.plugin((schema: any)=> {
+//   schema.add({ _id: Number });
+//   // eslint-disable-next-line @typescript-eslint/no-var-requires
+//   schema.plugin(autoIncrement.plugin, { model: 'Problem', field: '_id', startAt: 1 });
+// });
 
+problemSchema.plugin(autoIncrement, {
+  model: 'Problem',
+  field: 'problemId', // Field to be auto-incremented
+  start: 1, // Initial value
+});
 // Create and export the Problem model
 const Problem = mongoose.model<IProblem>('Problem', problemSchema);
 export default Problem;

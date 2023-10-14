@@ -4,6 +4,7 @@ import express, { json } from 'express';
 import morgan from 'morgan';
 import { createClient, RedisClientType } from 'redis';
 import { connectMongo, connectRedis } from './DB/db';
+import router from './Routes/problemRoutes'; 
 
 const server = express();
 const port = process.env.PORT ?? 5000;
@@ -20,6 +21,8 @@ server.use(morgan('dev'));
 
 connectMongo();
 connectRedis(redisClient);
+
+server.use('/api',router)
 
 server.listen(port, () => {
 	console.log(`[server] : Server running at http://localhost:${port}`);
