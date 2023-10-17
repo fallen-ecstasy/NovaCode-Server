@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllProblems, getByCategory, getById, getByTitle, insertProblem, updateProblemById } from '../Controllers/problems';
+import { deleteProblemById, getAllProblems, getByCategory, getById, getByIdOrTitle, getByTitle, insertProblem, updateProblemById } from '../Controllers/problems';
 const router = express.Router();
 
 
@@ -13,7 +13,7 @@ router.get('/problems/category/:category', getByCategory);
 router.get('/problems/title/:title', getByTitle);
 
 // Read a specific problem by ID
-router.get('/problems/:id', getById);
+router.get('/problems/pid/:pid', getById);
 
 //========Create Update Delete Problems=========
 
@@ -24,6 +24,8 @@ router.put('/problems/:id', updateProblemById);
 router.post('/problems', insertProblem);
 
 // Delete a specific problem by ID
-router.delete('/problems/:id',);
+router.delete('/problems/:id',deleteProblemById);
 
+// Get a specific problem by ID/Title
+router.get('/problems/:param',getByIdOrTitle)
 export default router;

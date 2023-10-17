@@ -36,10 +36,9 @@ export const getByTitle = async (req: Request, res: Response) => {
     }
 }
 export const getById = async (req: Request, res: Response) => {
-    const id = req.params.id;
-    console.log(id)
+    const pid = req.params.pid;
     try {
-        const problem = await Problem.findById(id);
+        const problem = await Problem.findOne({ pid: pid });
         if (!problem) {
             return res.status(404).json({ error: 'Problem not found' });
         }
@@ -86,5 +85,22 @@ export const deleteProblemById = async (req: Request, res: Response) => {
         res.status(500).json({ error: err.message });
     }
 }
+export const getByIdOrTitle = async (req: Request, res: Response) => {
+    const param = req.params.param;
+    try {
+        let problem = null;
+        if (!isNaN(Number(param))) {
+             problem = await Problem.findOne({ pid: param });
+        }else {
+             problem = await Problem.findOne({ title: param });
+        }
+        res.json(problem);
+        
+    } catch (err: any) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
+
 
 
