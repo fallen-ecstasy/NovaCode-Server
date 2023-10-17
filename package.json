@@ -21,6 +21,7 @@
     "mongodb": "^6.1.0",
     "mongoose": "^7.6.1",
     "mongoose-auto-increment": "^5.0.1",
+    "mongoose-plugin-autoinc": "^1.1.9",
     "morgan": "^1.10.0",
     "redis": "^4.6.10"
   },
