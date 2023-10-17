@@ -23,30 +23,7 @@ export const getByCategory = async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Server Error' });
     }
 }
-export const getByTitle = async (req: Request, res: Response) => {
-    const problemTitle: string = req.params.title;
-    try {
-        const problems = await Problem.findOne({ title: problemTitle });
-        if (!problems) {
-            return res.status(404).json({ error: 'Problem not found' });
-        }
-        res.json(problems);
-    } catch (err: any) {
-        res.status(500).json({ error: 'Server Error' });
-    }
-}
-export const getById = async (req: Request, res: Response) => {
-    const pid = req.params.pid;
-    try {
-        const problem = await Problem.findOne({ pid: pid });
-        if (!problem) {
-            return res.status(404).json({ error: 'Problem not found' });
-        }
-        res.json(problem);
-    } catch (err: any) {
-        res.status(500).json({ error: err.message });
-    }
-}
+
 export const insertProblem = async (req: Request, res: Response) => {
     try {
         const problems = new Problem(req.body);
