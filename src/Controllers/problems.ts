@@ -67,12 +67,12 @@ export const getByIdOrTitle = async (req: Request, res: Response) => {
     try {
         let problem = null;
         if (!isNaN(Number(param))) {
-             problem = await Problem.findOne({ pid: param });
-        }else {
-             problem = await Problem.findOne({ title: param });
+            problem = await Problem.findOne({ pid: param });
+        } else {
+            problem = await Problem.findOne({ title: param });
         }
         res.json(problem);
-        
+
     } catch (err: any) {
         res.status(500).json({ error: err.message });
     }

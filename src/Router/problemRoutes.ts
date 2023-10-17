@@ -10,7 +10,7 @@ router.get('/problems', getAllProblems);
 router.get('/problems/category/:category', getByCategory);
 
 // Get a specific problem by ID/Title
-router.get('/problems/:param',getByIdOrTitle)
+router.get('/problems/:param', getByIdOrTitle)
 
 //========Create Update Delete Problems=========
 
@@ -21,6 +21,6 @@ router.put('/problems/:id', updateProblemById);
 router.post('/problems', insertProblem);
 
 // Delete a specific problem by ID
-router.delete('/problems/:id',deleteProblemById);
+router.delete('/problems/:id', deleteProblemById);
 
 export default router;
