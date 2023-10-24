@@ -4,6 +4,7 @@ import { Schema, model, connect, ObjectId, Model } from 'mongoose';
 interface User {
     _id: ObjectId,
     name: string,
+    username: string,
     sessionCount: number,
     email: string,
     pass: {type: string, required: true},
