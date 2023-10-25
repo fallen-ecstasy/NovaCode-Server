@@ -117,7 +117,7 @@ Please adhere to this project's `code of conduct`.
 A Look at our Contributors
 
 
-[![Contributors](https://contrib.rocks/image?repo=fallen-ecstasy/NovaCode)](https://github.com/fallen-ecstasy/NovaCode/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=fallen-ecstasy/Novacode-server)](https://github.com/fallen-ecstasy/NovaCode/graphs/contributors)
 ## REPO ACTIVITY
 
 ![Alt](https://repobeats.axiom.co/api/embed/0b0455b39b8c5f8e2c74acc988a2f8c03ffb7264.svg "Repobeats analytics image")
