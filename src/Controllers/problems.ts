@@ -25,6 +25,12 @@ export const getByCategory = async (req: Request, res: Response) => {
 }
 
 export const insertProblem = async (req: Request, res: Response) => {
+    /*  #swagger.parameters['body'] = {
+           in: 'body',
+           description: 'Add new user.',
+    schema: { $ref: '#/components/schemas/Problem' }
+    
+   } */
     try {
         const problems = new Problem(req.body);
         if (!problems) {
@@ -39,9 +45,28 @@ export const insertProblem = async (req: Request, res: Response) => {
 }
 
 export const updateProblemById = async (req: Request, res: Response) => {
+    /*  #swagger.parameters['body'] = {
+        in: 'body',
+        description: 'Update user.',
+        schema: { $ref: '#/components/schemas/Problem' }
+    } */
     const id = req.params.id;
     try {
-        const problem = await Problem.findByIdAndUpdate(id, req.body, { new: true });
+        const problem = await Problem.findOneAndUpdate({ pid: id },
+            {
+                $set: {
+                    title: req.body.title,
+                    companies: req.body.companies,
+                    topics: req.body.topics,
+                    statement: req.body.statement,
+                    examples: req.body.examples,
+                    sampleTest: req.body.sampleTest,
+                    testCases: req.body.testCases,
+                    noOfHiddenTests: req.body.noOfHiddenTests,
+
+                }
+            }
+            , { new: true });
         if (!problem) {
             return res.status(404).json({ error: 'Problem not found' });
         }
@@ -53,7 +78,7 @@ export const updateProblemById = async (req: Request, res: Response) => {
 export const deleteProblemById = async (req: Request, res: Response) => {
     const id = req.params.id;
     try {
-        const problem = await Problem.findByIdAndRemove(id);
+        const problem = await Problem.findOneAndRemove({pid:id});
         if (!problem) {
             return res.status(404).json({ error: 'Problem not found' });
         }

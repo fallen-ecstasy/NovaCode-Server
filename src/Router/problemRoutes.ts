@@ -3,6 +3,9 @@ import { deleteProblemById, getAllProblems, getByCategory, getByIdOrTitle, inser
 const router = express.Router();
 
 
+
+
+
 // Read all problems
 router.get('/problems', getAllProblems);
 
@@ -16,7 +19,6 @@ router.get('/problems/:param', getByIdOrTitle)
 
 // Update a specific problem by ID
 router.put('/problems/:id', updateProblemById);
-
 // Create a new problem
 router.post('/problems', insertProblem);
 
